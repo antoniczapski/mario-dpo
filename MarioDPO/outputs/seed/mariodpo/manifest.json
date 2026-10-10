@@ -1,0 +1,66 @@
+[
+  {
+    "file": "level_000.txt",
+    "content_hash": "27943e4949155e108d8cd5247a5d78613d6c62f7ed469711f4bf91a4c5ab4ec4",
+    "width": 151,
+    "height": 16,
+    "judge_score": 2.9318,
+    "valid": true
+  },
+  {
+    "file": "level_001.txt",
+    "content_hash": "d5d91f6f3d0cae0b60d295cc4e2d51973d7e099a3f2c95c12262e2da6a7fd473",
+    "width": 161,
+    "height": 16,
+    "judge_score": 2.6524,
+    "valid": true
+  },
+  {
+    "file": "level_002.txt",
+    "content_hash": "151c492e9ca8cf77360c73b78d49ab058984f7b757c4381c059769aaac0139ea",
+    "width": 157,
+    "height": 16,
+    "judge_score": 2.4469,
+    "valid": true
+  },
+  {
+    "file": "level_003.txt",
+    "content_hash": "c2920694efb818483c028e7afc881c3b8a8f05e95e54368ba65f4d8f8099fb2d",
+    "width": 160,
+    "height": 16,
+    "judge_score": 2.53,
+    "valid": true
+  },
+  {
+    "file": "level_004.txt",
+    "content_hash": "a0faff34ab0850fc9730036892a66e0be172e34251b7683dd0f35060e225e237",
+    "width": 158,
+    "height": 16,
+    "judge_score": 3.6281,
+    "valid": true
+  },
+  {
+    "file": "level_005.txt",
+    "content_hash": "5ce938256003e5c4e1d244fc652eed439a404182d5a3f75e35f96dbc0e7983e1",
+    "width": 163,
+    "height": 16,
+    "judge_score": 2.2379,
+    "valid": true
+  },
+  {
+    "file": "level_006.txt",
+    "content_hash": "4378eb5011d5091cd1d2553d19f95aa1445478fe56b601338659e921cea0b1c6",
+    "width": 160,
+    "height": 16,
+    "judge_score": 1.7938,
+    "valid": true
+  },
+  {
+    "file": "level_007.txt",
+    "content_hash": "f9912b0cdecff5ff4d9eea671c9841879682b8fd0d2780deb0003d68d91254bd",
+    "width": 156,
+    "height": 16,
+    "judge_score": 2.9241,
+    "valid": true
+  }
+]

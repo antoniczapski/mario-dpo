@@ -1,0 +1,2 @@
+{"phase": "sft", "train_runtime": 8.1371, "train_samples_per_second": 11.798, "train_steps_per_second": 0.369, "total_flos": 8362552983552.0, "train_loss": 9.59687614440918, "epoch": 0.01125703564727955, "_t": 1781554804.6224704}
+{"phase": "sft", "train_runtime": 282.1377, "train_samples_per_second": 90.605, "train_steps_per_second": 2.839, "total_flos": 2226791061651456.0, "train_loss": 0.6510385973995246, "epoch": 3.0, "_t": 1781555148.3861113}

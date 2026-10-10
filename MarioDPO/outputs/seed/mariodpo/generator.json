@@ -1,0 +1,7 @@
+{
+  "id": "mariodpo",
+  "name": "MarioDPO v2",
+  "description": "GPT-2 (MarioGPT checkpoint) continue-pretrained on PCG Arena levels and DPO-aligned on oversampled human preference votes plus judge-labelled synthetic pairs. LoRA adapter fine-tuning on 816 human pairs (x10 weight) + 2000 synthetic pairs.",
+  "paradigm": "ML + DPO",
+  "level_count": 8
+}

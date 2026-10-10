@@ -1,0 +1,45 @@
+{
+  "generated_at_utc": "2026-06-15T12:15:51.007909Z",
+  "vote_total_reported": 1192,
+  "vote_rows": 1000,
+  "player_profiles": 79,
+  "unique_players_in_votes": 77,
+  "unique_sessions_in_votes": 213,
+  "level_stats_total_reported": 1104,
+  "level_stats_rows": 1104,
+  "trajectory_total_reported": 2429,
+  "standalone_trajectory_rows": 100,
+  "side_rows": 2000,
+  "played_side_rows": 1968,
+  "embedded_trajectories": 1968,
+  "tag_assignments": 329,
+  "vote_result_distribution": {
+    "LEFT": 418,
+    "RIGHT": 398,
+    "TIE": 165,
+    "SKIP": 19
+  },
+  "death_count_distribution": {
+    "0": 419,
+    "1": 1581
+  },
+  "duration_seconds_median": 8.0405,
+  "duration_seconds_p95": 51.163599999999995,
+  "duration_seconds_p99": 82.04243,
+  "duration_seconds_max": 12191.63,
+  "generated_plots": [
+    "/workspaces/pcg-arena/latex/masters_thesis/img/eda_study_overview.png",
+    "/workspaces/pcg-arena/latex/masters_thesis/img/eda_engagement.png",
+    "/workspaces/pcg-arena/latex/masters_thesis/img/eda_generator_ranking.png",
+    "/workspaces/pcg-arena/latex/masters_thesis/img/eda_pairwise_confusion.png",
+    "/workspaces/pcg-arena/latex/masters_thesis/img/eda_static_metrics_table.png",
+    "/workspaces/pcg-arena/latex/masters_thesis/img/eda_expressive_range.png",
+    "/workspaces/pcg-arena/latex/masters_thesis/img/eda_static_metrics_vs_rating.png",
+    "/workspaces/pcg-arena/latex/masters_thesis/img/eda_trajectory_stacks.png",
+    "/workspaces/pcg-arena/latex/masters_thesis/img/eda_trajectory_occupancy.png",
+    "/workspaces/pcg-arena/latex/masters_thesis/img/eda_trajectory_metrics_vs_rating.png",
+    "/workspaces/pcg-arena/latex/masters_thesis/img/eda_user_generator_heatmap.png",
+    "/workspaces/pcg-arena/latex/masters_thesis/img/eda_user_embedding.png",
+    "/workspaces/pcg-arena/latex/masters_thesis/img/eda_tag_semantics.png"
+  ]
+}

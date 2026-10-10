@@ -1,0 +1,31 @@
+# DPO alignment config for MarioDPO.
+# Override any field with --set key=value on the CLI (see scripts/05_dpo.py).
+
+# Policy + reference both initialise from the SFT (continue-pretrained) model.
+sft_model: models/sft
+output_dir: models/dpo
+
+# Data
+pairs_file: data/synthetic/preference_pairs.jsonl
+max_length: 256         # truncation budget for prompt+completion (trl>=1.6)
+
+# DPO objective
+beta: 0.1
+loss_type: sigmoid
+
+# Optimisation
+learning_rate: 1.0e-5
+num_train_epochs: 3
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 8
+warmup_ratio: 0.1
+logging_steps: 20
+save_steps: 500
+seed: 42
+
+# Hardware / precision
+fp16: true
+use_lora: true          # recommended on a 6 GB GTX 2060
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05

@@ -1,0 +1,34 @@
+# ── MarioDPO ignores ───────────────────────────────────────────────────
+# Secrets — never commit real tokens.
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Virtual envs
+.venv/
+venv/
+
+# Experiment tracking
+wandb/
+
+# Heavy / regenerable artifacts
+# Small curated results are tracked: models/judge.pkl, the DPO LoRA adapter in
+# models/dpo/, and the plots / reports / generated levels under outputs/.
+models/sft/
+models/**/checkpoint-*/
+outputs/**/*.log
+outputs/**/*.err
+outputs/**/*.out
+data/synthetic/
+# Keep the raw export and processed tables tracked so the judge is reproducible,
+# but ignore large intermediate caches.
+data/processed/*.cache
+*.ckpt
+*.safetensors
+!models/dpo/adapter_model.safetensors
+*.bin

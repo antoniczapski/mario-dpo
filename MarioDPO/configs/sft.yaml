@@ -1,0 +1,27 @@
+# Continue-pretraining (SFT) config for MarioDPO.
+# Override any field with --set key=value on the CLI (see scripts/03_sft.py).
+
+base_model: shyamsn97/Mario-GPT2-700-context-length
+output_dir: models/sft
+
+# Data
+win_cols: 50            # column window width (50 cols x 16 rows)
+stride: 25              # overlap windows by 50%
+max_length: 256         # token budget per window
+upweight_original: 3    # repeat original-level windows this many times
+limit_per_generator: null
+
+# Optimisation
+learning_rate: 5.0e-5
+num_train_epochs: 3
+per_device_train_batch_size: 8
+gradient_accumulation_steps: 4
+warmup_ratio: 0.03
+weight_decay: 0.01
+logging_steps: 20
+save_steps: 500
+seed: 42
+
+# Hardware / precision (GTX 2060: fp16 on, small batch + grad accum)
+fp16: true
+use_lora: false         # enable to fit larger effective batch on 6 GB

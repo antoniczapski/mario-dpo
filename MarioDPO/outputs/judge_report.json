@@ -1,0 +1,33 @@
+{
+  "selected": "linear_bt",
+  "report": {
+    "heuristic": {
+      "accuracy": 0.6097560975609756,
+      "auc": 0.6350386674598453,
+      "n_pairs": 82,
+      "generator_spearman": 0.410989010989011,
+      "train_accuracy": 0.6457765667574932
+    },
+    "linear_bt": {
+      "accuracy": 0.7195121951219512,
+      "auc": 0.8094883997620465,
+      "n_pairs": 82,
+      "generator_spearman": 0.9648351648351648,
+      "train_accuracy": 0.771117166212534
+    },
+    "gradient_boosting": {
+      "accuracy": 0.7439024390243902,
+      "auc": 0.7992266508030933,
+      "n_pairs": 82,
+      "generator_spearman": 0.9824175824175824,
+      "train_accuracy": 0.9046321525885559
+    },
+    "mlp": {
+      "accuracy": 0.7317073170731707,
+      "auc": 0.7946162998215348,
+      "n_pairs": 82,
+      "generator_spearman": 0.9912087912087912,
+      "train_accuracy": 0.776566757493188
+    }
+  }
+}
