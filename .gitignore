@@ -6,7 +6,6 @@ __pycache__/
 .pytest_cache/
 .venv/
 venv/
-./ad_stats
 
 # Secrets
 .env
