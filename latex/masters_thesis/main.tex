@@ -78,7 +78,9 @@ Evaluating procedural content generators (PCGs) for video games poses significan
 \changed{Super Mario Bros has been regularly \KOT{constantly/regularly/?} used as a benchmark for PCG level generation research since the first Mario AI Competition in 2009, making it an ideal domain for systematic generator comparison.}\KOT{OK} The platform enables players to play two procedurally generated levels side-by-side in their browser, vote for their preferred level, and optionally tag gameplay characteristics. Votes are aggregated using the Glicko-2 rating system, providing uncertainty-aware rankings with confidence intervals.
 
 Building on the collected data, we conduct an exploratory analysis that characterizes generator preference rankings, static expressive range, gameplay trajectory fingerprints, anonymous-user heterogeneity, and tag semantics. The analysis shows that PCG Arena functions not only as a leaderboard, but also as a diagnostic instrument for understanding why generators win or fail. \changed{It further shows that automated structural metrics cannot substitute for the human ranking, motivating training directly on player preferences.}\KOT{OK}
-\KOT{ale tu bym dał nowy paragraf}Finally, we present MarioDPO, a level generator fine-tuned with Direct Preference Optimization that achieves a the highest win rate score among tested generators, approaching the hand-crafted original Nintendo baseline.
+\KOT{ale tu bym dał nowy paragraf}
+
+\changed{Finally, we present MarioDPO,} a level generator fine-tuned with Direct Preference Optimization that achieves a the highest win rate score among tested generators, approaching the hand-crafted original Nintendo baseline.
 }
 
 \author         {Antoni Czapski}
@@ -113,6 +115,9 @@ open-source Mario AI Framework~\citep{karakovskiy2012marioai} offers a
 standardised environment for both automated and human evaluation.\KOT{w sumie mało obrazków - może screenik z Mario żeby ludzie widzieli jak nie wiedzą :P} Over 15 years
 of research has produced dozens of Mario level generators spanning \changed{most} major
 PCG paradigm---yet evaluating and comparing them remains an open challenge.
+
+\changed{Figure~\ref{fig:smb-screenshot} shows the original game and its
+tile-based level geometry.}
 
 \begin{figure}[H]
 \centering
@@ -201,6 +206,11 @@ Mario level generators. \changed{We investigate three research questions:}
           Optimisation on arena votes, achieving a preference score of 0.832 and
           approaching the hand-crafted Nintendo baseline.
 \end{enumerate}
+
+\changed{The platform source code is available at
+\url{https://github.com/antoniczapski/pcg-arena}.
+The MarioDPO implementation, analysis scripts, and thesis sources are
+available at \url{https://github.com/antoniczapski/mario-dpo}.}
 
 \section{Thesis Structure}
 \label{sec:intro-structure}
@@ -1583,7 +1593,29 @@ The analysis is exploratory: its conclusions rely on patterns observed in the da
 \section{Study Protocol and Dataset}
 \label{sec:eda-study-design}
 
-Participants were recruited through university social-media channels, word of mouth among game-development and computer-science communities, as well as a small promoted Reddit campaign targeting game-development and procedural-generation communities.\KOT{linki jakieś? np do postów redditowych} Participation was anonymous. The platform assigned browser-based anonymous player identifiers and session identifiers, persisted through cookies or local browser storage. Consequently, ``players'' in this analysis should be interpreted as anonymous browser/player IDs rather than verified unique humans; clearing cookies or changing device/browser could create a new ID.
+Participants were recruited through university social-media channels, word of mouth among game-development and computer-science communities, as well as a small promoted Reddit campaign targeting game-development and procedural-generation communities.\changed{\footnote{Recruitment post: \url{https://www.reddit.com/r/proceduralgeneration/s/pmltOkw37q}.}}\KOT{linki jakieś? np do postów redditowych} Participation was anonymous. The platform assigned browser-based anonymous player identifiers and session identifiers, persisted through cookies or local browser storage. Consequently, ``players'' in this analysis should be interpreted as anonymous browser/player IDs rather than verified unique humans; clearing cookies or changing device/browser could create a new ID.
+
+\changed{The promoted Reddit campaign recorded 62,407 impressions.
+Summing the country-level ad exports gives a reported reach of 55,001
+and 415 clicks. Figure~\ref{fig:reddit-recruitment} shows the geographic
+distribution of reach and clicks. The ad exports cover the reporting
+interval 1 January--31 May 2026; these statistics describe recruitment
+exposure, not the geographic distribution of participants in the May 2026
+vote sample. Impressions and clicks should not be interpreted as counts
+of unique study participants.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{reddit_recruitment.png}
+\caption{\changed{Reddit recruitment campaign: reported reach (top) and
+click count (bottom) by country, from the country-level ad exports for
+1 January--31 May 2026. Each panel shows its ten highest-count
+countries; the remaining countries and records without a country code
+are grouped as ``Other / unknown''. The totals are 55,001 reported reach
+and 415 clicks. These are advertising statistics, not participant
+demographics.}}
+\label{fig:reddit-recruitment}
+\end{figure}
 
 Each battle used a blind A/B protocol. A player saw two levels from different generators, played one attempt on each side, and then selected the preferred side, a tie, or skip. Optional tags could be attached to either side. Restricting each side to a single attempt was a deliberate system-design decision. A protocol allowing multiple attempts per level was also implemented and tested, but limiting play to one attempt per side collects substantially more pairwise comparisons per unit of player time, directly serving the platform's main goal of building a leaderboard from a large number of A/B comparisons.
 
@@ -1751,7 +1783,7 @@ generator, ordered by preference score.
 \textbf{Generator} & \textbf{Score} & \textbf{Levels} & \textbf{Linearity} & \textbf{Leniency} & \textbf{Gap dens.} & \textbf{Enemy dens.} & \textbf{NCD} \\
 \midrule
 original           & 0.83 & 15  & 0.02 & 0.61 & 0.18 & 0.08 & 0.83 \\
-mariodpo\KOT{(ours)}           & 0.83 & 200 & 0.06 & 0.67 & 0.14 & 0.09 & 0.81 \\
+mariodpo\changed{~(ours)}\KOT{(ours)}           & 0.83 & 200 & 0.06 & 0.67 & 0.14 & 0.09 & 0.81 \\
 ore                & 0.65 & 100 & 0.11 & 0.63 & 0.16 & 0.06 & 0.85 \\
 mariogpt           & 0.64 & 100 & 0.10 & 0.55 & 0.22 & 0.06 & 0.76 \\
 notch              & 0.53 & 100 & 0.12 & 0.70 & 0.10 & 0.02 & 0.75 \\
@@ -1951,7 +1983,7 @@ human votes it has never seen.
 \section[Summary: A Reliable but Sparse Signal]{Summary: A Reliable but Sparse Signal}
 \label{sec:eda-summary}
 
-The chapter's findings form a single argument\KOT{single? I see some 5 points here...}:
+\changed{The chapter yields five main findings}\KOT{single? I see some 5 points here...}:
 \begin{enumerate}[nosep]
     \item \textbf{Measurement works}: blind pairwise votes produce a stable ranking, with \texttt{original} and \texttt{mariodpo} nearly tied at the top ($\approx$0.83) and pattern-based generators at the bottom.
     \item \textbf{Players agree}: the same generators score high or low across the anonymous population, so the aggregate ranking reflects shared preference rather than individual taste.
