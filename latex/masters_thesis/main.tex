@@ -66,21 +66,18 @@
 
 
 \polishabstract {
-\KOT{todo -- przeczytać PL potem}
-Ewaluacja generatorów treści proceduralnych (PCG) dla gier wideo stanowi istotne wyzwanie metodologiczne, ponieważ przyjemność gracza jest z natury subiektywna i trudna do zmierzenia za pomocą automatycznych metryk. Niniejsza praca przedstawia PCG Arenę --- platformę internetową do ślepego testowania A/B generatorów poziomów do gry Super Mario Bros poprzez dane o preferencjach graczy. \changed{Super Mario Bros jest wykorzystywane jako benchmark w badaniach nad proceduralnym generowaniem poziomów od pierwszych zawodów Mario AI Competition w 2009 roku, co czyni je naturalną dziedziną do systematycznego porównywania generatorów.} Platforma umożliwia graczom rozgrywanie dwóch proceduralnie generowanych poziomów obok siebie w przeglądarce, głosowanie na preferowany poziom oraz opcjonalne tagowanie cech rozgrywki. Głosy są agregowane za pomocą systemu ratingowego Glicko-2, który zapewnia rankingi z przedziałami ufności.
+Ewaluacja generatorów treści proceduralnych (PCG) dla gier wideo stanowi istotne wyzwanie metodologiczne, ponieważ przyjemność gracza jest z natury subiektywna i trudna do zmierzenia za pomocą automatycznych metryk. Niniejsza praca przedstawia PCG Arenę --- platformę internetową do ślepego testowania A/B generatorów poziomów do gry Super Mario Bros poprzez dane o preferencjach graczy. Super Mario Bros jest wykorzystywane jako benchmark w badaniach nad proceduralnym generowaniem poziomów od pierwszych zawodów Mario AI Competition w 2009 roku, co czyni je naturalną dziedziną do systematycznego porównywania generatorów. Platforma umożliwia graczom rozgrywanie dwóch proceduralnie generowanych poziomów obok siebie w przeglądarce, głosowanie na preferowany poziom oraz opcjonalne tagowanie cech rozgrywki. Głosy są agregowane za pomocą systemu ratingowego Glicko-2, który zapewnia rankingi z przedziałami ufności.
 
-Na podstawie zebranych danych przeprowadzono analizę eksploracyjną charakteryzującą ranking preferencji generatorów, statyczny zakres ekspresyjny poziomów, trajektorie rozgrywki, heterogeniczność anonimowych użytkowników oraz semantykę tagów. Wyniki pokazują, że platforma może służyć zarówno jako ranking generatorów, jak i narzędzie diagnostyczne ujawniające ich tryby porażki. \changed{Analiza pokazuje ponadto, że automatyczne metryki strukturalne nie są w stanie zastąpić rankingu opartego na ludzkich preferencjach, co motywuje trenowanie generatora bezpośrednio na preferencjach graczy.} Finalnie, praca przedstawia MarioDPO --- generator poziomów wytrenowany metodą Direct Preference Optimization, który osiąga najwyższy wynik preferencji spośród testowanych generatorów, zbliżony do oryginalnych poziomów Nintendo.
+Na podstawie zebranych danych przeprowadzono analizę eksploracyjną charakteryzującą ranking preferencji generatorów, statyczny zakres ekspresyjny poziomów, trajektorie rozgrywki, heterogeniczność anonimowych użytkowników oraz semantykę tagów. Wyniki pokazują, że platforma może służyć zarówno jako ranking generatorów, jak i narzędzie diagnostyczne ujawniające ich tryby porażki. Analiza pokazuje ponadto, że automatyczne metryki strukturalne nie są w stanie zastąpić rankingu opartego na ludzkich preferencjach, co motywuje trenowanie generatora bezpośrednio na preferencjach graczy. Finalnie, praca przedstawia MarioDPO --- generator poziomów wytrenowany metodą Direct Preference Optimization, który osiąga najwyższy wynik preferencji spośród testowanych generatorów, zbliżony do oryginalnych poziomów Nintendo.
 }
 
 \englishabstract {
 Evaluating procedural content generators (PCGs) for video games poses significant methodological challenges, as player enjoyment is inherently subjective and difficult to quantify through automated metrics alone. This thesis presents PCG Arena, a web-based platform designed for blind A/B testing of Super Mario Bros level generators through human preference data.
-\KOT{gdzieś - może tutaj - zdanie, że Mario has been an important benchmark for a variety of PCG methods, from 2009 until today, albo cos innego ale we wstępie od razu dającego do zroumienia, że to nie jest losowa gierka wzięta bo tak}
-\changed{Super Mario Bros has been regularly \KOT{constantly/regularly/?} used as a benchmark for PCG level generation research since the first Mario AI Competition in 2009, making it an ideal domain for systematic generator comparison.}\KOT{OK} The platform enables players to play two procedurally generated levels side-by-side in their browser, vote for their preferred level, and optionally tag gameplay characteristics. Votes are aggregated using the Glicko-2 rating system, providing uncertainty-aware rankings with confidence intervals.
+Super Mario Bros has been regularly used as a benchmark for PCG level generation research since the first Mario AI Competition in 2009, making it an ideal domain for systematic generator comparison. The platform enables players to play two procedurally generated levels side-by-side in their browser, vote for their preferred level, and optionally tag gameplay characteristics. Votes are aggregated using the Glicko-2 rating system, providing uncertainty-aware rankings with confidence intervals.
 
-Building on the collected data, we conduct an exploratory analysis that characterizes generator preference rankings, static expressive range, gameplay trajectory fingerprints, anonymous-user heterogeneity, and tag semantics. The analysis shows that PCG Arena functions not only as a leaderboard, but also as a diagnostic instrument for understanding why generators win or fail. \changed{It further shows that automated structural metrics cannot substitute for the human ranking, motivating training directly on player preferences.}\KOT{OK}
-\KOT{ale tu bym dał nowy paragraf}
+Building on the collected data, we conduct an exploratory analysis that characterizes generator preference rankings, static expressive range, gameplay trajectory fingerprints, anonymous-user heterogeneity, and tag semantics. The analysis shows that PCG Arena functions not only as a leaderboard, but also as a diagnostic instrument for understanding why generators win or fail. It further shows that automated structural metrics cannot substitute for the human ranking, motivating training directly on player preferences.
 
-\changed{Finally, we present MarioDPO,} a level generator fine-tuned with Direct Preference Optimization that achieves a the highest win rate score among tested generators, approaching the hand-crafted original Nintendo baseline.
+Finally, we present MarioDPO, a level generator fine-tuned with Direct Preference Optimization that achieves a the highest win rate score among tested generators, approaching the hand-crafted original Nintendo baseline.
 }
 
 \author         {Antoni Czapski}
@@ -99,30 +96,30 @@ Building on the collected data, we conduct an exploratory analysis that characte
 \label{sec:intro-pcg}
 
 Procedural Content Generation (PCG) refers to the algorithmic creation of game
-content---levels, maps, characters, items, narratives---with limited or indirect \KOT{OK, ale nie zacytowanie https://www.pcgbook.com to zbrodnia w kontekscie tej pracy :P }
+content---levels, maps, characters, items, narratives---with limited or indirect
 human input~\citep{togelius2011search, shaker2016pcgbook, summerville2018pcgml}. PCG has a long
 commercial history: \emph{Rogue}~(1980) and \emph{Elite}~(1984) used algorithmic
 generation to overcome memory constraints, and modern titles such as
 \emph{Minecraft}, \emph{No Man's Sky}, and \emph{Spelunky} rely on procedural
-generation as a core design pillar\changed{, providing variety, replayability, and vast explorable worlds}. Academic interest in PCG has grown steadily
+generation as a core design pillar, providing variety, replayability, and vast explorable worlds. Academic interest in PCG has grown steadily
 since the mid-2000s, producing a rich landscape of generation techniques spanning
 constructive rules, evolutionary search, formal grammars, neural networks, and
 reinforcement learning.
 
-Among the many game domains studied, Super Mario Bros (SMB) \changed{has accumulated the largest body of comparative work in} \changed{PCG level generation research}. Its 2D tile-grid format provides a
+Among the many game domains studied, Super Mario Bros (SMB) has accumulated the largest body of comparative work in PCG level generation research. Its 2D tile-grid format provides a
 rich yet tractable design space, its physics are well understood, and the
 open-source Mario AI Framework~\citep{karakovskiy2012marioai} offers a
-standardised environment for both automated and human evaluation.\KOT{w sumie mało obrazków - może screenik z Mario żeby ludzie widzieli jak nie wiedzą :P} Over 15 years
-of research has produced dozens of Mario level generators spanning \changed{most} major
+standardised environment for both automated and human evaluation. Over 15 years
+of research has produced dozens of Mario level generators spanning most major
 PCG paradigm---yet evaluating and comparing them remains an open challenge.
 
-\changed{Figure~\ref{fig:smb-screenshot} shows the original game and its
-tile-based level geometry.}
+Figure~\ref{fig:smb-screenshot} shows the original game and its
+tile-based level geometry.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\textwidth]{smb-retro.jpg}
-\caption{\changed{Screenshot of the original \emph{Super Mario Bros} (Nintendo, 1985). The player controls Mario through side-scrolling levels featuring platforms, enemies, power-ups, and coins. The 2D tile-grid structure of these levels provides the design space studied throughout this thesis.}\KOT{figure raczej powinno być jakoś refowane z tekstu}}
+\caption{Screenshot of the original \emph{Super Mario Bros} (Nintendo, 1985). The player controls Mario through side-scrolling levels featuring platforms, enemies, power-ups, and coins. The 2D tile-grid structure of these levels provides the design space studied throughout this thesis.}
 \label{fig:smb-screenshot}
 \end{figure}
 
@@ -154,13 +151,13 @@ introducing a systematic bias that is rarely quantified.
 typically small-scale: controlled lab studies use 15--37
 participants~\citep{shaker2011mario, marino2015empirical}, while larger web-based
 studies sacrifice experimental control~\citep{pedersen2010modeling}.
-\changed{Small samples cannot control for varying levels of gaming experience,
-diverse player expectations, or learning effects across successive trials.}
+Small samples cannot control for varying levels of gaming experience,
+diverse player expectations, or learning effects across successive trials.
 Critically,
-\changed{all existing studies were conducted as one-time events---often years
+all existing studies were conducted as one-time events---often years
 apart---rather than as a persistent evaluation infrastructure, and the largest
 web-based studies predate the wave of ML-based generators (GANs, LLMs, diffusion
-models) that have since reshaped the field.} \changed{Many of these studies also reveal which algorithm produced each level to participants, even though, when players know the source generator, expectations contaminate their judgments.} \KOT{I suppose how the original Mario PCG competition worked? exactly as your study - play two levels choose best?}
+models) that have since reshaped the field. Many of these studies also reveal which algorithm produced each level to participants, even though, when players know the source generator, expectations contaminate their judgments.
 
 This persistent gap between scalable-but-inaccurate automated metrics and
 valid-but-expensive human studies motivates the work presented in this thesis.
@@ -170,9 +167,8 @@ valid-but-expensive human studies motivates the work presented in this thesis.
 
 This thesis addresses the PCG evaluation gap through the design, deployment, and
 analysis of \emph{PCG Arena}, a web-based platform for blind A/B testing of
-Mario level generators. \changed{We investigate three research questions:}
+Mario level generators. We investigate three research questions:
 
-\begingroup\color{red}
 \begin{description}[style=nextline]
   \item[RQ1 (Measurement)] Can a persistent, blind, web-based arena produce a
     reliable human-preference ranking of Super Mario Bros level generators?
@@ -183,11 +179,8 @@ Mario level generators. \changed{We investigate three research questions:}
     level generator that surpasses existing PCG methods and approaches
     human-authored quality? (Chapter~\ref{ch:mariodpo})
 \end{description}
-\endgroup
 
-\KOT{probably noindent here to make it look better}
-
-\noindent The thesis makes \changed{four} contributions:
+\noindent The thesis makes four contributions:
 
 \begin{enumerate}
     \item \textbf{PCG Arena}, a persistent, open-access web platform for blind
@@ -207,10 +200,10 @@ Mario level generators. \changed{We investigate three research questions:}
           approaching the hand-crafted Nintendo baseline.
 \end{enumerate}
 
-\changed{The platform source code is available at
+The platform source code is available at
 \url{https://github.com/antoniczapski/pcg-arena}.
 The MarioDPO implementation, analysis scripts, and thesis sources are
-available at \url{https://github.com/antoniczapski/mario-dpo}.}
+available at \url{https://github.com/antoniczapski/mario-dpo}.
 
 \section{Thesis Structure}
 \label{sec:intro-structure}
@@ -219,7 +212,7 @@ The remainder of this thesis is organised as follows.
 Chapter~\ref{ch:background} surveys background and related work on procedural
 content generation in the context of Mario level generation, evaluation methodology,
 rating systems, and preference learning. Chapter~\ref{ch:system-design} describes the design and implementation
-of the PCG Arena platform. \changed{Chapter~\ref{ch:eda} presents the user
+of the PCG Arena platform. Chapter~\ref{ch:eda} presents the user
 study: the study protocol and collected dataset, the generator preference
 ranking and player-consistency analysis (RQ1), and an assessment of whether
 static structure, gameplay behaviour, and tags can substitute for the human
@@ -227,7 +220,7 @@ ranking (RQ2). Chapter~\ref{ch:mariodpo} uses these
 results (RQ3): it describes the level representation and base model, the
 construction of a preference dataset from human votes and judge-labelled
 synthetic pairs, DPO fine-tuning, and the evaluation of the resulting MarioDPO
-generator.} Chapter~\ref{ch:conclusions} summarises contributions,
+generator. Chapter~\ref{ch:conclusions} summarises contributions,
 discusses limitations, and outlines future directions.
 
 
@@ -237,7 +230,6 @@ discusses limitations, and outlines future directions.
 \section{Super Mario Bros}
 \label{sec:bg-smb}
 
-\begingroup\color{red}
 Super Mario Bros (SMB), released by Nintendo in 1985, is a side-scrolling platform
 game in which the player controls Mario through a sequence of levels. Each level is
 composed of a 2D tile grid, typically 16 tiles tall and 150--210 tiles wide, scrolling
@@ -273,15 +265,14 @@ the mix of terrain, enemies, and power-ups yields a combinatorially rich yet
 well-understood design vocabulary; and the game's cultural familiarity means that
 nearly all experimental subjects already understand the controls and goals
 (Figure~\ref{fig:smb-screenshot}).
-\endgroup
 
 \section{Procedural Content Generation}
 \label{sec:bg-pcg}
 
 Procedural Content Generation (PCG) is the algorithmic creation of game content
-with limited or indirect human input~\citep{togelius2011search, shaker2016pcgbook}. \changed{Drawing on the
+with limited or indirect human input~\citep{togelius2011search, shaker2016pcgbook}. Drawing on the
 taxonomies presented by \citet{togelius2011search}, \citet{shaker2016pcgbook}, and \citet{summerville2018pcgml},
-we distinguish five broad generation paradigms:}
+we distinguish five broad generation paradigms:
 
 \begin{description}[style=nextline, leftmargin=1.5em]
     \item[Constructive / Rule-based] Sequentially place content according to
@@ -393,8 +384,8 @@ for training data entirely.
 \section{Super Mario Bros as a PCG Benchmark}
 \label{sec:bg-mario}
 
-\changed{Several practical factors explain why Super Mario Bros recurs throughout the
-PCG literature.} Its 2D tile-grid format provides a rich yet tractable design space, its
+Several practical factors explain why Super Mario Bros recurs throughout the
+PCG literature. Its 2D tile-grid format provides a rich yet tractable design space, its
 physics introduce no new mechanics after the first level (isolating level design
 as the sole variable of interest), nearly all experimental subjects are familiar
 with the game's controls and goals, and the open-source Mario AI Framework
@@ -434,21 +425,21 @@ generators.
 \subsection{Mario Level Generators in the Literature}
 \label{subsec:bg-mario-generators}
 
-\changed{The PCG Arena platform hosts 14 generators spanning all major paradigm
+The PCG Arena platform hosts 14 generators spanning all major paradigm
 families, selected to benchmark a broad cross-section of established PCG
 approaches: one human-authored baseline, four constructive generators, one
 chunk-based generator, four search-based generators, three neural generators,
-and MarioDPO, the preference-aligned generator introduced in this thesis.}
+and MarioDPO, the preference-aligned generator introduced in this thesis.
 Table~\ref{tab:generators} provides a comparative overview.
 
-\changed{An important caveat is that these generators do not all target the
+An important caveat is that these generators do not all target the
 same design vocabulary. Several reduce the problem space substantially---for
 instance, restricting themselves to one or two enemy types (typically Goombas
 and Green Koopas) or omitting power-ups, pipes carrying Piranha Plants, or
 Bullet Bill cannons. This unevenness affects fair comparison: a generator
 producing only a subset of SMB's design elements may appear competitive on
 some metrics while being structurally less expressive than the original
-Nintendo levels.}
+Nintendo levels.
 
 \textbf{Human-authored baseline.} The 15 original SMB levels from Nintendo
 (1985), transcribed into the Mario AI Framework's format. These serve as the
@@ -532,19 +523,19 @@ The most widely used evaluation approach computes \emph{static structural
 metrics} directly from the tile grid, without simulating gameplay.
 
 \textbf{Linearity} measures how closely a level's vertical profile follows a
-straight line. \citet{smith2010analyzing} defined it as the \changed{mean
+straight line. \citet{smith2010analyzing} defined it as the mean
 absolute residual---the average vertical distance between platform midpoints
 and the best-fit regression line---so that lower values indicate a more linear
-level}. Later works~\citep{horn2014comparative,
+level. Later works~\citep{horn2014comparative,
 summerville2017understanding} instead use $R^2$,  (the coefficient of determination, measuring
 the proportion of variance in the data explained by the regression), which inverts the scale: higher $R^2$ means more linear. The two formulations are therefore not directly comparable, complicating cross-paper analyses.
 
 \textbf{Leniency} approximates difficulty through weighted sums of game objects.
-\changed{In its original form~\citep{smith2010analyzing}, it is computed as
+In its original form~\citep{smith2010analyzing}, it is computed as
 $L = (w_p \cdot n_p + w_g \cdot n_g + w_e \cdot n_e) / W$, where $n_p$ is the
 number of power-ups, $n_g$ the number of gaps, $n_e$ the number of enemies, $W$
 the level width in tiles, and the weights $w_p > 0$, $w_g, w_e < 0$ reward
-forgiving content and penalise hazards.} At least three incompatible formulations exist in the literature, using different
+forgiving content and penalise hazards. At least three incompatible formulations exist in the literature, using different
 tile weights and normalisation schemes~\citep{smith2010analyzing,
 shaker2012evolving, marino2015empirical}. Critically,
 \citet{marino2015empirical} showed that leniency only weakly correlates with
@@ -561,9 +552,9 @@ distribution as a 2D histogram, revealing a generator's output peaks, holes, and
 biases. ERA has been widely adopted~\citep{horn2014comparative,
 shaker2012evolving} but is purely descriptive---it characterises \emph{what} a
 generator produces, not whether players enjoy it.
-\changed{An ERA characterisation of the PCG Arena generators themselves is
+An ERA characterisation of the PCG Arena generators themselves is
 presented in Section~\ref{sec:eda-static-expressive-range}
-(Figure~\ref{fig:eda-expressive-range}).}
+(Figure~\ref{fig:eda-expressive-range}).
 
 \subsection{Agent-Based Testing}
 \label{subsec:bg-eval-agents}
@@ -634,8 +625,6 @@ Moreover, even the largest prior web study was conducted before modern
 generative methods existed, leaving a significant gap in comparative human
 evaluation of contemporary Mario level generators.
 
-% \KOT{więcej tego jeszcze było z human studies: https://ojs.aaai.org/index.php/AIIDE/article/view/12399/12258 oraz http://julian.togelius.com/Dahlskog2013Patterns.pdf  ze slajdów złapałem co mi się przypomniało}
-
 \subsection{Comparison of Approaches and Their Limitations}
 \label{subsec:bg-eval-comparison}
 
@@ -647,20 +636,20 @@ key papers in the Mario PCG literature.
 \small
 \begin{tabular}{lllccccc}
 \toprule
-\textbf{Paper} & \textbf{Year} & \changed{\textbf{PCG algorithm}} & \textbf{S} & \textbf{A} & \textbf{ERA} & \textbf{H} & \textbf{ML} \\
+\textbf{Paper} & \textbf{Year} & \textbf{PCG algorithm} & \textbf{S} & \textbf{A} & \textbf{ERA} & \textbf{H} & \textbf{ML} \\
 \midrule
-Smith \& Whitehead          & 2010 & \changed{Launchpad (rhythm-based)} & $\checkmark$ &              & $\checkmark$ &              &              \\
-Pedersen et al.             & 2010 & \changed{Notch (parameterised)}   & $\checkmark$ &              &              & $\checkmark$ & $\checkmark$ \\
-Shaker et al.\ (Champ.)     & 2011 & \changed{Comp.\ entries (mixed)}  & $\checkmark$ & $\checkmark$ &              & $\checkmark$ &              \\
-Shaker et al.\ (GE)         & 2012 & \changed{Grammatical Evolution}   & $\checkmark$ &              & $\checkmark$ &              &              \\
-Horn et al.                 & 2014 & \changed{Multiple (comparative)}  & $\checkmark$ &              & $\checkmark$ &              &              \\
-Marino et al.               & 2015 & \changed{GE + Notch (compared)}   & $\checkmark$ &              &              & $\checkmark$ &              \\
-Summerville \& Mateas       & 2016 & \changed{LSTM column generator}   & $\checkmark$ & $\checkmark$ &              &              & $\checkmark$ \\
-Summerville et al.          & 2017 & \changed{Multiple (8 generators)} & $\checkmark$ & $\checkmark$ &              & $\checkmark$ & $\checkmark$ \\
-Volz et al.\ (MarioGAN)     & 2018 & \changed{DCGAN + CMA-ES}          & $\checkmark$ & $\checkmark$ &              &              &              \\
-Nam et al.                  & 2024 & \changed{Stochastic ``human-like'' agents} & $\checkmark$ & $\checkmark$ &              & $\checkmark$ &              \\
+Smith \& Whitehead          & 2010 & Launchpad (rhythm-based) & $\checkmark$ &              & $\checkmark$ &              &              \\
+Pedersen et al.             & 2010 & Notch (parameterised)   & $\checkmark$ &              &              & $\checkmark$ & $\checkmark$ \\
+Shaker et al.\ (Champ.)     & 2011 & Comp.\ entries (mixed)  & $\checkmark$ & $\checkmark$ &              & $\checkmark$ &              \\
+Shaker et al.\ (GE)         & 2012 & Grammatical Evolution   & $\checkmark$ &              & $\checkmark$ &              &              \\
+Horn et al.                 & 2014 & Multiple (comparative)  & $\checkmark$ &              & $\checkmark$ &              &              \\
+Marino et al.               & 2015 & GE + Notch (compared)   & $\checkmark$ &              &              & $\checkmark$ &              \\
+Summerville \& Mateas       & 2016 & LSTM column generator   & $\checkmark$ & $\checkmark$ &              &              & $\checkmark$ \\
+Summerville et al.          & 2017 & Multiple (8 generators) & $\checkmark$ & $\checkmark$ &              & $\checkmark$ & $\checkmark$ \\
+Volz et al.\ (MarioGAN)     & 2018 & DCGAN + CMA-ES          & $\checkmark$ & $\checkmark$ &              &              &              \\
+Nam et al.                  & 2024 & Stochastic ``human-like'' agents & $\checkmark$ & $\checkmark$ &              & $\checkmark$ &              \\
 \midrule
-\textbf{PCG Arena (ours)}   & \textbf{2026} & \changed{\textbf{14 generators (all paradigms)}} & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+\textbf{PCG Arena (ours)}   & \textbf{2026} & \textbf{14 generators (all paradigms)} & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
 \bottomrule
 \end{tabular}
 \caption{Evaluation methods used in Mario PCG research.
@@ -672,11 +661,11 @@ Nam et al.                  & 2024 & \changed{Stochastic ``human-like'' agents} 
 \label{tab:eval-comparison}
 \end{table}
 
-\changed{Taken together, the works summarised in Table~\ref{tab:eval-comparison}
+Taken together, the works summarised in Table~\ref{tab:eval-comparison}
 illustrate how Mario PCG evaluation has progressed: from purely structural
 analyses, through agent-based playability checks and expressive-range
 characterisations, to small-scale human studies and learned predictors of
-player behaviour. Across this body of work, three persistent problems emerge:}
+player behaviour. Across this body of work, three persistent problems emerge:
 
 \textbf{Metrics--experience misalignment.} \citet{marino2015empirical} showed
 that two generators rated identically by all computational metrics were rated
@@ -686,10 +675,10 @@ agreement imposes ceilings on achievable metric--human correlations, with
 aesthetics being particularly noisy. Automated metrics are useful
 characterisation tools but unreliable quality proxies.
 
-\textbf{Small-$n$ and one-time studies.} \changed{Most human studies use 15--37
+\textbf{Small-$n$ and one-time studies.} Most human studies use 15--37
 participants in controlled settings and were conducted as isolated events, often
 years apart. No prior platform is known to offer persistent, longitudinal
-evaluation at scale}---when players know which algorithm produced a level,
+evaluation at scale---when players know which algorithm produced a level,
 expectations contaminate judgments.
 
 \textbf{Absence of a community-standard reward model.} Search-based and
@@ -701,8 +690,8 @@ unavailable.
 PCG Arena addresses these gaps by providing a persistent, blind, web-based
 platform for human evaluation, producing the preference data needed to
 (a)~rank generators with statistical confidence, (b)~validate automated
-metrics\changed{---identifying which, if any, can serve as reliable proxies for
-human judgment and thereby reduce the cost of future evaluations}---and
+metrics---identifying which, if any, can serve as reliable proxies for
+human judgment and thereby reduce the cost of future evaluations---and
 (c)~train preference-aligned generators.
 
 
@@ -753,9 +742,9 @@ increased uncertainty from inactivity.
 parameter, \emph{volatility}~$\sigma_v$, which captures how erratic an entity's
 performance is. The update pipeline converts ratings to an internal scale,
 estimates variance and improvement from outcomes, iteratively updates volatility,
-and then updates RD and rating. \KOT{chyba coś nie jest wprowadzone - czym jest phi?}\KOT{ok, zobaczyłem potem ranking deviation wprowadzając gaussiana dałeś jako sigmę square a teraz używasz phi...} \changed{On the internal Glicko-2 scale the rating
+and then updates RD and rating. On the internal Glicko-2 scale the rating
 deviation is denoted $\phi = \text{RD} / \lambda$, where
-$\lambda = 173.7178$ is the scale conversion factor:}
+$\lambda = 173.7178$ is the scale conversion factor:
 %
 \begin{align}
 \phi' &= \frac{1}{\sqrt{1/\phi^{*2} + 1/v}}, \quad
@@ -791,9 +780,9 @@ Arena outside the games domain.
 
 \textbf{LLM-as-a-Judge.} \citet{zheng2023judging} studied using GPT-4 as a
 surrogate judge for pairwise evaluation, achieving $>$80\% agreement with human
-preferences. PCG Arena's \emph{Judge Function} plays an analogous role \changed{on a
+preferences. PCG Arena's \emph{Judge Function} plays an analogous role on a
 much smaller scale: a heuristic filter used to label additional level pairs
-(Section~\ref{sec:dpo-judge})}.
+(Section~\ref{sec:dpo-judge}).
 
 \citet{sarkar2017glicko2} applied Glicko-2 to the human computation game
 \emph{Paradox}, treating puzzle-tasks as rated entities alongside players.
@@ -818,7 +807,7 @@ successor, Direct Preference Optimisation (DPO).
 \label{subsec:bg-rlhf}
 
 
-\changed{RLHF trains a policy to maximise a reward signal derived from human
+RLHF trains a policy to maximise a reward signal derived from human
 preferences rather than a hand-designed reward function.
 \citet{christiano2017deep} introduced the modern recipe: learn a reward model
 $\hat{r}$ from pairwise comparisons of behaviour, then optimise the policy
@@ -836,9 +825,7 @@ than model scale. The lesson transfers directly to PCG: just as ROUGE fails to
 capture summary quality, automated level metrics fail to fully capture fun,
 aesthetics, or challenge appropriateness~\citep{marino2015empirical}; PCG
 Arena's paired-comparison voting is the game-design analogue of RLHF's
-preference collection phase.}
-
-
+preference collection phase.
 \subsection{Direct Preference Optimization}
 \label{subsec:bg-dpo}
 
@@ -1150,7 +1137,7 @@ XXXXXXXXXXX---||----||||||--|--|||--|||||-----||-------|||---|||--|-----||||----
 \begin{subfigure}{\textwidth}
 \centering
 \includegraphics[width=\textwidth]{ascii-level-rendered.png}
-\caption{\changed{Rendered view of the same segment.}}
+\caption{Rendered view of the same segment.}
 \end{subfigure}
 
 \caption{Original Super Mario Bros Level (World~1-1 segment).
@@ -1395,17 +1382,17 @@ uncertainty-aware rankings. Each generator carries three parameters:
     \item \textbf{Volatility ($\sigma$):} the expected fluctuation in performance over time.
 \end{itemize}
 
-\changed{The mathematical foundations of the Glicko-2 system---the Bradley-Terry
+The mathematical foundations of the Glicko-2 system---the Bradley-Terry
 model, expected score computation, and the update equations for $\phi'$ and
 $\mu'$---are presented in Section~\ref{subsec:bg-glicko2}. Here we describe the
-implementation-specific aspects of how PCG Arena applies these formulas.}
+implementation-specific aspects of how PCG Arena applies these formulas.
 
 \subsection{Rating Update Procedure}
 \label{subsec:sd-glicko-update}
 
 After each battle, the winning generator receives a score of 1, the loser 0, and ties
-yield 0.5 for both. \changed{Using the expected score and update equations from
-Section~\ref{subsec:bg-glicko2}, the implementation proceeds as follows:}
+yield 0.5 for both. Using the expected score and update equations from
+Section~\ref{subsec:bg-glicko2}, the implementation proceeds as follows:
 
 \begin{enumerate}
     \item Convert ratings to the internal Glicko-2 scale (centred at 0, divided by
@@ -1416,7 +1403,7 @@ Section~\ref{subsec:bg-glicko2}, the implementation proceeds as follows:}
     \item Compute $\Delta = v \cdot g(\phi_B)(s - E)$, where $s$ is the actual score.
     \item Update volatility $\sigma'$ via the iterative Illinois algorithm
           (system constant $\tau = 0.5$).
-    \item \changed{Update RD and rating using Equations~\ref{eq:glicko-rd-bg}--\ref{eq:glicko-mu-bg}.}
+    \item Update RD and rating using Equations~\ref{eq:glicko-rd-bg}--\ref{eq:glicko-mu-bg}.
     \item Convert back to the display scale and clamp to $[100, 3000]$.
 \end{enumerate}
 
@@ -1473,10 +1460,10 @@ win rates, a level gallery, and tag distributions
     \label{fig:generator-preview}
 \end{figure}
 
-\changed{For researchers, the platform additionally exposes a per-level
+For researchers, the platform additionally exposes a per-level
 analytics view (Figure~\ref{fig:eda-detailed-level-stats}) that combines the
 level map with recorded player traces, death locations, and tag counts,
-supporting qualitative inspection of individual levels.}
+supporting qualitative inspection of individual levels.
 
 \begin{figure}[H]
 \centering
@@ -1592,27 +1579,27 @@ The analysis is exploratory: its conclusions rely on patterns observed in the da
 \section{Study Protocol and Dataset}
 \label{sec:eda-study-design}
 
-Participants were recruited through university social-media channels, word of mouth among game-development and computer-science communities, as well as a small promoted Reddit campaign targeting game-development and procedural-generation communities.\changed{\footnote{Recruitment post: \url{https://www.reddit.com/r/proceduralgeneration/s/pmltOkw37q}.}}\KOT{linki jakieś? np do postów redditowych} Participation was anonymous. The platform assigned browser-based anonymous player identifiers and session identifiers, persisted through cookies or local browser storage. Consequently, ``players'' in this analysis should be interpreted as anonymous browser/player IDs rather than verified unique humans; clearing cookies or changing device/browser could create a new ID.
+Participants were recruited through university social-media channels, word of mouth among game-development and computer-science communities, as well as a small promoted Reddit campaign targeting game-development and procedural-generation communities.\footnote{Recruitment post: \url{https://www.reddit.com/r/proceduralgeneration/s/pmltOkw37q}.} Participation was anonymous. The platform assigned browser-based anonymous player identifiers and session identifiers, persisted through cookies or local browser storage. Consequently, ``players'' in this analysis should be interpreted as anonymous browser/player IDs rather than verified unique humans; clearing cookies or changing device/browser could create a new ID.
 
-\changed{The promoted Reddit campaign recorded 62,407 impressions.
+The promoted Reddit campaign recorded 62,407 impressions.
 Summing the country-level ad exports gives a reported reach of 55,001
 and 415 clicks. Figure~\ref{fig:reddit-recruitment} shows the geographic
 distribution of reach and clicks. The ad exports cover the reporting
 interval 1 January--31 May 2026; these statistics describe recruitment
 exposure, not the geographic distribution of participants in the May 2026
 vote sample. Impressions and clicks should not be interpreted as counts
-of unique study participants.}
+of unique study participants.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{reddit_recruitment.png}
-\caption{\changed{Reddit recruitment campaign: reported reach (top) and
+\caption{Reddit recruitment campaign: reported reach (top) and
 click count (bottom) by country, from the country-level ad exports for
 1 January--31 May 2026. Each panel shows its ten highest-count
 countries; the remaining countries and records without a country code
 are grouped as ``Other / unknown''. The totals are 55,001 reported reach
 and 415 clicks. These are advertising statistics, not participant
-demographics.}}
+demographics.}
 \label{fig:reddit-recruitment}
 \end{figure}
 
@@ -1682,7 +1669,7 @@ The core purpose of PCG Arena is to measure human preference between generators.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\textwidth]{eda_generator_ranking.png}
-\caption{\KOT{definitely too small. put legend inside chart (bottom right), and then wit topage width}Generator ranking from blind pairwise votes. Bars show mean preference score, where win = 1, tie = 0.5, and loss = 0; horizontal intervals are 95\% bootstrap confidence intervals obtained by resampling votes. Bar colour encodes the generator family (human-authored, preference-trained, neural, constructive/search, and pattern-based), as shown in the in-plot legend.}
+\caption{Generator ranking from blind pairwise votes. Bars show mean preference score, where win = 1, tie = 0.5, and loss = 0; horizontal intervals are 95\% bootstrap confidence intervals obtained by resampling votes. Bar colour encodes the generator family (human-authored, preference-trained, neural, constructive/search, and pattern-based), as shown in the in-plot legend.}
 \label{fig:eda-generator-ranking}
 \end{figure}
 
@@ -1695,7 +1682,7 @@ Figure~\ref{fig:eda-pairwise-confusion} gives the corresponding head-to-head mat
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\textwidth]{eda_pairwise_confusion.png}
-\caption{\KOT{too small and no idea what to do with this one}\KOT{also 'row generator' column generator headers are silly - removing them  would give slightly more space (also - is the scale really needed; maybe remove it also?)}Pairwise generator preference matrix ordered by overall ranking. Each cell is the score rate for the row generator against the column generator, with ties counted as 0.5. Green indicates a higher score rate for the row generator.}
+\caption{Pairwise generator preference matrix ordered by overall ranking. Each cell is the score rate for the row generator against the column generator, with ties counted as 0.5. Green indicates a higher score rate for the row generator.}
 \label{fig:eda-pairwise-confusion}
 \end{figure}
 
@@ -1711,7 +1698,7 @@ and whether they agree. The anonymous-player data are sparse, and because player
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{eda_engagement.png}
-\caption{Engagement concentration in the anonymous player-ID data. The analysis uses browser/player IDs, so these counts should not be interpreted as verified unique humans.\KOT{like this is totally unreadable - you should make them differently aligned if you want people to actually understand their meaning}}
+\caption{Engagement concentration in the anonymous player-ID data. The analysis uses browser/player IDs, so these counts should not be interpreted as verified unique humans.}
 \label{fig:eda-engagement}
 \end{figure}
 
@@ -1722,7 +1709,7 @@ Figure~\ref{fig:eda-user-heatmap} examines the player-by-generator preference ma
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{eda_user_generator_heatmap.png}
-\caption{\KOT{larger font}Preference heatmap of anonymous player IDs against generators.
+\caption{Preference heatmap of anonymous player IDs against generators.
 Each row is a single anonymous player ID with at least five votes, and each
 cell is that player's mean preference score for the generator in that column
 (win = 1, tie = 0.5, loss = 0). Rows are ordered by hierarchical
@@ -1782,7 +1769,7 @@ generator, ordered by preference score.
 \textbf{Generator} & \textbf{Score} & \textbf{Levels} & \textbf{Linearity} & \textbf{Leniency} & \textbf{Gap dens.} & \textbf{Enemy dens.} & \textbf{NCD} \\
 \midrule
 original           & 0.83 & 15  & 0.02 & 0.61 & 0.18 & 0.08 & 0.83 \\
-mariodpo\changed{~(ours)}\KOT{(ours)}           & 0.83 & 200 & 0.06 & 0.67 & 0.14 & 0.09 & 0.81 \\
+mariodpo~(ours)           & 0.83 & 200 & 0.06 & 0.67 & 0.14 & 0.09 & 0.81 \\
 ore                & 0.65 & 100 & 0.11 & 0.63 & 0.16 & 0.06 & 0.85 \\
 mariogpt           & 0.64 & 100 & 0.10 & 0.55 & 0.22 & 0.06 & 0.76 \\
 notch              & 0.53 & 100 & 0.12 & 0.70 & 0.10 & 0.02 & 0.75 \\
@@ -1833,7 +1820,7 @@ follows the preference ranking.
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{eda_expressive_range.png}
-\caption{\KOT{guess the comment here}Expressive-range view of static level structure. Each subplot shows levels from one generator in the linearity--leniency plane, ordered by preference ranking.}
+\caption{Expressive-range view of static level structure. Each subplot shows levels from one generator in the linearity--leniency plane, ordered by preference ranking.}
 \label{fig:eda-expressive-range}
 \end{figure}
 
@@ -1864,14 +1851,14 @@ pixels, and 63\% of its recorded deaths fall into a single early horizontal
 bin. Players facing these levels do not gradually lose interest but rather they hit a
 wall within the first screens.
 
-Tags provide a lightweight qualitative layer over the binary vote. They are optional, sparse, and subjective, so they should not be treated as ground-truth labels. Their value is diagnostic: they help distinguish why a level wins or loses.\KOT{how much tags were used comparing to possible levels that could be used on, and also how many players used tags?}
+Tags provide a lightweight qualitative layer over the binary vote. They are optional, sparse, and subjective, so they should not be treated as ground-truth labels. Their value is diagnostic: they help distinguish why a level wins or loses.
 
 Figure~\ref{fig:eda-tag-semantics} summarizes tag frequency, tag rate by generator, tag co-occurrence, and outcome distribution when each tag is present. The most common tags are \texttt{impossible} (87 assignments), \texttt{fun} (56), \texttt{too\_hard} (55), \texttt{boring} (49), \texttt{creative} (39), \texttt{broken\_graphics} (22), and \texttt{too\_easy} (21).
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{eda_tag_semantics.png}
-\caption{\KOT{...}Tag semantics summary. The panels show tag frequency, tag rate by generator, tag co-occurrence, and the outcome distribution for tagged sides.}
+\caption{Tag semantics summary. The panels show tag frequency, tag rate by generator, tag co-occurrence, and the outcome distribution for tagged sides.}
 \label{fig:eda-tag-semantics}
 \end{figure}
 
@@ -1883,8 +1870,8 @@ player early and repeatedly in the same places are the levels tagged
 \texttt{impossible} and \texttt{too\_hard}, and they lose. Positive quality
 behaves differently: \texttt{fun} and \texttt{creative} align with winning,
 but Section~\ref{sec:eda-static-expressive-range} found no structural recipe
-for them. \changed{This asymmetry shapes the judge function of the next
-section.}\KOT{such sentences smells llm even to noobs ;p}
+for them. This asymmetry shapes the judge function of the next
+section.
 
 % ===================================================================
 \section{The Judge Function}
@@ -1982,7 +1969,7 @@ human votes it has never seen.
 \section[Summary: A Reliable but Sparse Signal]{Summary: A Reliable but Sparse Signal}
 \label{sec:eda-summary}
 
-\changed{The chapter yields five main findings}:
+The chapter yields five main findings:
 \begin{enumerate}[nosep]
     \item \textbf{Measurement works}: blind pairwise votes produce a stable ranking, with \texttt{original} and \texttt{mariodpo} nearly tied at the top ($\approx$0.83) and pattern-based generators at the bottom.
     \item \textbf{Players agree}: the same generators score high or low across the anonymous population, so the aggregate ranking reflects shared preference rather than individual taste.
@@ -2034,16 +2021,16 @@ function labels 2,606 additional synthetic pairs, providing the broad negative
 coverage needed to steer the model away from known failure modes without
 diluting the human preference objective.
 
-MarioDPO consists of four components:\KOT{punty to pelne zdania zaczynaj z wielkiej litery}
+MarioDPO consists of four components:
 \begin{enumerate}[nosep]
-  \item \changed{A} column-major level representation that preserves the vertical structure
+  \item A column-major level representation that preserves the vertical structure
         of Mario tilemaps while remaining compatible with autoregressive
         sequence modelling;
-  \item \changed{A} base generator reusing the MarioGPT checkpoint;
-  \item \changed{A} preference dataset combining the human PCG Arena votes with
+  \item A base generator reusing the MarioGPT checkpoint;
+  \item A preference dataset combining the human PCG Arena votes with
         synthetic pairs labelled by the judge function developed in
         Section~\ref{sec:dpo-judge}; and
-  \item \changed{A} DPO fine-tuning stage that aligns the base generator with
+  \item A DPO fine-tuning stage that aligns the base generator with
         the resulting preference signal.
 \end{enumerate}
 
@@ -2153,7 +2140,7 @@ syntax.
 
 The DPO dataset contains two sources of pairwise supervision: direct
 human votes from PCG Arena and synthetic pairs scored by the judge function
-developed in Section~\ref{sec:dpo-judge} \changed{(Figure~\ref{fig:dpo-pipeline})}.
+developed in Section~\ref{sec:dpo-judge} (Figure~\ref{fig:dpo-pipeline}).
 
 \paragraph{Human pairs.}
 Each non-tie PCG Arena vote is converted into a pair $(y_w, y_l)$, where $y_w$ is
@@ -2161,10 +2148,10 @@ the level selected by the player and $y_l$ is the rejected level. Votes marked a
 ties or skips are excluded because they do not define a strict preference.
 
 \paragraph{Synthetic pairs.}
-To expand the dataset, candidate levels are scored with $J_{final}$ \changed{(Section~\ref{sec:dpo-judge}, Equation~\ref{eq:dpo-j-final})}.\KOT{j final bylo gxies wczesniej? juz nie pamietam - moze napisz w nawiasie ref: (Section X/equation y)?} For a pair
+To expand the dataset, candidate levels are scored with $J_{final}$ (Section~\ref{sec:dpo-judge}, Equation~\ref{eq:dpo-j-final}). For a pair
 of levels $(a,b)$, the higher-scoring level becomes the winner if the score
 margin exceeds 0.1. This margin avoids training on ambiguous pairs where the
-judge itself is nearly indifferent\changed{, yielding a mean score difference of 0.441 across the selected synthetic pairs.}\KOT{piszesz to juz ktorys raz - byl o tym caly wykres - a teraz jeszcze tabelka, bez sensu}
+judge itself is nearly indifferent, yielding a mean score difference of 0.441 across the selected synthetic pairs.
 
 \section[DPO Fine-Tuning and Inference-Time Filtering]{DPO Fine-Tuning and Inference-Time Filtering}
 \label{subsec:dpo-training-details}
