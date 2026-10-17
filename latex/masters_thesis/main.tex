@@ -155,7 +155,7 @@ Small samples cannot control for varying levels of gaming experience,
 diverse player expectations, or learning effects across successive trials.
 Critically,
 all existing studies were conducted as one-time events---often years
-apart---rather than as a persistent evaluation infrastructure, and the largest
+apart, and the largest
 web-based studies predate the wave of ML-based generators (GANs, LLMs, diffusion
 models) that have since reshaped the field. Many of these studies also reveal which algorithm produced each level to participants, even though, when players know the source generator, expectations contaminate their judgments.
 
@@ -614,8 +614,7 @@ Both studies date from 2010--2011 and predate the wave of ML-based generators
 
 These studies collectively demonstrate that while human empirical evaluation provides the
 most valid quality signal, it is expensive, typically small-scale ($n < 40$ in
-controlled settings), and conducted as isolated, one-time events rather
-than within a persistent evaluation infrastructure.
+controlled settings), and conducted as isolated, one-time events.
 Earlier work on automatic personalised content
 generation~\citep{shaker2010towards} and design-pattern
 analysis~\citep{dahlskog2013patterns} further explored the relationship between
@@ -787,7 +786,7 @@ much smaller scale: a heuristic filter used to label additional level pairs
 \citet{sarkar2017glicko2} applied Glicko-2 to the human computation game
 \emph{Paradox}, treating puzzle-tasks as rated entities alongside players.
 This is the most direct precedent for PCG Arena's use of Glicko-2 to rate
-game content rather than human players.
+game content.
 
 \citet{snow2008cheap} showed that aggregating labels from multiple non-expert
 annotators can match expert-level quality, underpinning the design assumption
@@ -808,7 +807,7 @@ successor, Direct Preference Optimisation (DPO).
 
 
 RLHF trains a policy to maximise a reward signal derived from human
-preferences rather than a hand-designed reward function.
+preferences.
 \citet{christiano2017deep} introduced the modern recipe: learn a reward model
 $\hat{r}$ from pairwise comparisons of behaviour, then optimise the policy
 against $\hat{r}$ with reinforcement learning. \citet{ziegler2019fine} adapted
@@ -1230,13 +1229,9 @@ optionally tag each level.
 \label{subsec:sd-tagging}
 
 In addition to the preference vote, players may optionally tag each level in the battle
-with up to three descriptive labels drawn from a fixed vocabulary of seven tags.
-The tags were hand-crafted based on properties a PCG researcher would
-want a generator to be judged on: overall enjoyment, engagement, creativity,
-difficulty calibration, playability, and visual correctness. We did not find
-a pre-existing tag taxonomy for PCG level evaluation in the literature; the
-set was designed to be small enough for rapid annotation yet expressive enough
-to capture the most salient quality dimensions.
+with up to three descriptive labels drawn from a fixed vocabulary of seven tags
+(Table~\ref{tab:tags}), chosen to cover enjoyment, engagement, creativity, difficulty,
+playability, and visual correctness.
 
 \begin{table}[H]
 \centering
@@ -1573,13 +1568,13 @@ tags can explain or replace the ranking, and Section~\ref{sec:dpo-judge}
 builds a pragmatic judge function that Chapter~\ref{ch:mariodpo} uses to label
 additional training pairs.
 
-The analysis is exploratory: its conclusions rely on patterns observed in the data and its visualisations rather than on formal hypothesis testing. The aim is to demonstrate what PCG Arena can measure---preference, structure, gameplay behaviour, user heterogeneity, and qualitative failure modes---while acknowledging that the current dataset is still too small to support claims of universal design laws.
+The analysis is exploratory and relies on patterns observed in the data and its visualisations. The aim is to demonstrate what PCG Arena can measure across preference, level structure, gameplay behaviour, user consistency, and qualitative failure modes.
 
 % ===================================================================
 \section{Study Protocol and Dataset}
 \label{sec:eda-study-design}
 
-Participants were recruited through university social-media channels, word of mouth among game-development and computer-science communities, as well as a small promoted Reddit campaign targeting game-development and procedural-generation communities.\footnote{Recruitment post: \url{https://www.reddit.com/r/proceduralgeneration/s/pmltOkw37q}.} Participation was anonymous. The platform assigned browser-based anonymous player identifiers and session identifiers, persisted through cookies or local browser storage. Consequently, ``players'' in this analysis should be interpreted as anonymous browser/player IDs rather than verified unique humans; clearing cookies or changing device/browser could create a new ID.
+Participants were recruited through university social-media channels, word of mouth among game-development and computer-science communities, as well as a small promoted Reddit campaign targeting game-development and procedural-generation communities.\footnote{Recruitment post: \url{https://www.reddit.com/r/proceduralgeneration/s/pmltOkw37q}.} Participation was anonymous: the platform assigned browser-based player and session identifiers persisted through cookies or local browser storage.
 
 The promoted Reddit campaign recorded 62,407 impressions.
 Summing the country-level ad exports gives a reported reach of 55,001
@@ -1609,7 +1604,7 @@ The May 2026 analysis export contains the data summarized in Table~\ref{tab:eda-
 
 \begin{table}[H]
 \centering
-\caption{Dataset summary for the exploratory analysis. Player counts refer to anonymous browser/player IDs, not verified unique humans.}
+\caption{Dataset summary for the exploratory analysis.}
 \label{tab:eda-dataset}
 \begin{tabular}{lr}
 \toprule
@@ -1654,7 +1649,7 @@ unchanged; the May export therefore evaluates the same frozen model.}
 Two clarifications are important for interpreting the analyses that
 follow. First, MarioDPO (Chapter~\ref{ch:mariodpo}) was trained once, on the
 January training snapshot, and deployed unchanged thereafter. Second, the
-analyses in this chapter use the May export rather than the training snapshot
+analyses in this chapter use the May export
 because it is strictly larger and therefore yields tighter uncertainty
 estimates; since neither the platform nor the deployed MarioDPO changed
 between the two snapshots, they measure the same systems at different sample
@@ -1692,13 +1687,14 @@ Figure~\ref{fig:eda-pairwise-confusion} gives the corresponding head-to-head mat
 
 Aggregating individual votes into the single ranking of
 Section~\ref{sec:eda-rankings} is only meaningful if the underlying player
-population is reasonably consistent; this section examines who the voters are
-and whether they agree. The anonymous-player data are sparse, and because players are identified only by browser/player IDs we know nothing about who they are---their age, background, or gaming experience are all unknown. The data are nonetheless useful for understanding engagement and possible preference heterogeneity. Figure~\ref{fig:eda-engagement} shows votes over time, votes per anonymous player ID, and cumulative vote contribution.
+population is reasonably consistent; this section examines how votes are
+distributed across anonymous player IDs and whether their preferences align.
+Figure~\ref{fig:eda-engagement} shows votes over time, votes per anonymous player ID, and cumulative vote contribution.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{eda_engagement.png}
-\caption{Engagement concentration in the anonymous player-ID data. The analysis uses browser/player IDs, so these counts should not be interpreted as verified unique humans.}
+\caption{Engagement concentration across anonymous player IDs.}
 \label{fig:eda-engagement}
 \end{figure}
 
@@ -1724,8 +1720,8 @@ The heatmap suggests that, despite some variation, players largely agree on
 which generators are good and which are bad: most rows score the top-ranked
 generators highly and the bottom-ranked generators poorly, with only mild
 disagreement on the mid-table generators. That agreement matters for the rest
-of the thesis. It means the votes measure something shared rather than
-individual taste, which is what makes it sound to combine them into a single
+of the thesis: it indicates that the votes capture a shared preference signal,
+which is what makes it sound to combine them into a single
 ranking (Section~\ref{sec:eda-rankings}) and to use them as a training signal
 in Chapter~\ref{ch:mariodpo}.
 
@@ -1805,8 +1801,8 @@ structural diversity by NCD to \texttt{patternWeightCount} and
 \texttt{patternCount} has above-average linearity. Extreme values do flag
 degenerate designs---\texttt{patternCount}'s enemy density (0.25) is roughly
 triple that of any top-tier generator, and \texttt{marioDiffusion}'s leniency
-(0.44) is the lowest in the corpus---but such red flags identify obvious
-failures rather than order the plausible generators.
+(0.44) is the lowest in the corpus---but such red flags only identify obvious
+failures.
 
 The answer to RQ2 is therefore negative: structural metrics cannot
 replace human votes when the goal is to rank generators. This matches the gap
@@ -1848,10 +1844,10 @@ progress is 1126.5 pixels for \texttt{original} and 988.0 pixels for
 \texttt{mariodpo}. For the weakest generators the traces pile up and terminate
 early: \texttt{patternCount} has a median maximum progress of only 174.5
 pixels, and 63\% of its recorded deaths fall into a single early horizontal
-bin. Players facing these levels do not gradually lose interest but rather they hit a
+bin. Players facing these levels hit a
 wall within the first screens.
 
-Tags provide a lightweight qualitative layer over the binary vote. They are optional, sparse, and subjective, so they should not be treated as ground-truth labels. Their value is diagnostic: they help distinguish why a level wins or loses.
+Tags provide a qualitative diagnostic layer over the binary vote, helping distinguish why a level wins or loses.
 
 Figure~\ref{fig:eda-tag-semantics} summarizes tag frequency, tag rate by generator, tag co-occurrence, and outcome distribution when each tag is present. The most common tags are \texttt{impossible} (87 assignments), \texttt{fun} (56), \texttt{too\_hard} (55), \texttt{boring} (49), \texttt{creative} (39), \texttt{broken\_graphics} (22), and \texttt{too\_easy} (21).
 
@@ -1886,8 +1882,8 @@ combination of static metrics reproduces the human ranking
 (Section~\ref{sec:eda-static-expressive-range}), so we do not attempt to model
 enjoyment. What is reliably measurable is failure
 (Section~\ref{sec:eda-tag-semantics}). The judge function $J_{final}$ is
-therefore a deliberately coarse filter: it separates obviously flawed levels
-from plausible ones rather than scoring how much fun a level is.
+therefore a deliberately coarse filter that separates obviously flawed levels
+from plausible ones.
 
 The judge is a weighted sum of five interpretable terms:
 %
@@ -1972,16 +1968,15 @@ human votes it has never seen.
 The chapter yields five main findings:
 \begin{enumerate}[nosep]
     \item \textbf{Measurement works}: blind pairwise votes produce a stable ranking, with \texttt{original} and \texttt{mariodpo} nearly tied at the top ($\approx$0.83) and pattern-based generators at the bottom.
-    \item \textbf{Players agree}: the same generators score high or low across the anonymous population, so the aggregate ranking reflects shared preference rather than individual taste.
+    \item \textbf{Players agree}: the same generators score high or low across the anonymous population, so the aggregate ranking reflects shared preference.
     \item \textbf{Static metrics cannot rank}: the top generators have near-identical static profiles and no metric column separates strong from weak; structure acts only as a coarse filter for degenerate designs.
     \item \textbf{Failure is diagnosable}: early, concentrated deaths and \texttt{impossible}/\texttt{too\_hard} tags mark losing levels, while \texttt{fun} and \texttt{creative} align with wins but show no structural recipe.
-    \item \textbf{A coarse judge suffices for labelling}: combining the failure signals yields $J_{final}$, which reproduces the quality tiering in-sample ($r_s = 0.736$) by catching easy-to-spot failures, not by measuring enjoyment.
+    \item \textbf{A coarse judge suffices for labelling}: combining the failure signals yields $J_{final}$, which reproduces the quality tiering in-sample ($r_s = 0.736$) by catching easy-to-spot failures.
 \end{enumerate}
 
 Two properties of the vote signal matter for what follows. It is
 reliable: anonymous players largely agree on which generators are good
-(Section~\ref{sec:eda-user-heterogeneity}), so the aggregate ranking is not an
-artefact of individual taste. It is also sparse: the
+(Section~\ref{sec:eda-user-heterogeneity}). It is also sparse: the
 January training snapshot contains only 473 usable non-tie votes
 (Table~\ref{tab:eda-timeline}), far too few to fine-tune a sequence model
 directly. The next chapter therefore trains on the human votes as the primary
@@ -2002,8 +1997,7 @@ which generators are good (Section~\ref{sec:eda-user-heterogeneity}). Second,
 no automated metric substitutes for that signal---player enjoyment has no
 simple structural proxy
 (Section~\ref{sec:eda-static-expressive-range})---which is precisely why
-MarioDPO is trained on the preferences themselves rather than on a
-hand-crafted fitness function. Third, although enjoyment resists measurement,
+MarioDPO is trained directly on player preferences. Third, although enjoyment resists measurement,
 failure does not: frustrating, uncompletable structure is reliably
 identifiable, and the judge function of Section~\ref{sec:dpo-judge} labels it
 cheaply and at scale. What the arena does not deliver is volume: the
@@ -2124,7 +2118,7 @@ validity filters described in Section~\ref{subsec:dpo-training-details}.
 \subsection[Base Model]{Base Model}
 \label{subsec:dpo-sft}
 
-Rather than training a level generator from scratch, MarioDPO reuses
+MarioDPO reuses
 the published MarioGPT checkpoint~\citep{sudhakaran2023mariogpt} as its
 reference policy $\pi_{ref}$. MarioGPT is an autoregressive decoder already
 fine-tuned on column-major Mario levels, so it produces syntactically valid SMB
@@ -2221,7 +2215,7 @@ with the original Nintendo levels at 0.833 and ahead of ORE (0.655) and MarioGPT
 (0.643). MarioDPO thus approaches the human baseline and clearly
 outperforms the other procedural generators in this export, suggesting that
 preference-aligned generation is a promising direction for the platform. The pairwise matrix in Chapter~\ref{ch:eda} further shows that MarioDPO
-performs consistently across many direct matchups rather than benefiting only
+performs consistently across many direct matchups and not just benefits
 from weak opponents.
 
 \begin{figure}[H]
@@ -2234,8 +2228,7 @@ human-authored levels.}
 \end{figure}
 
 Notably, MarioDPO also overtakes MarioGPT, the checkpoint it was
-initialised from: preference alignment on arena votes, rather than a change of
-architecture or training corpus, accounts for the difference. This places
+initialised from, showing that preference alignment on arena votes accounts for the improvement. This places
 MarioDPO in the same top tier as the original SMB1 levels and above all other
 algorithmic generators evaluated in PCG Arena.
 
@@ -2247,11 +2240,11 @@ Three design choices explain the outcome.
 First, the base model starts from a strong structural prior. Reusing the
 MarioGPT checkpoint and a column-major representation gives the generator a bias
 toward valid, readable Mario geometry before preference optimisation begins. This avoids
-a common failure mode of pure search or random generation: the optimiser spends
-most of its capacity rediscovering basic syntax rather than improving quality.
+a common failure mode of pure search or random generation, where the optimiser spends
+most of its capacity rediscovering basic syntax.
 
 Second, the judge function (Section~\ref{sec:dpo-judge}) supplies
-broad negative coverage rather than a model of enjoyment. It reliably flags
+broad negative coverage. It reliably flags
 the failure modes identified in Chapter~\ref{ch:eda}---gap-fragmented,
 uncompletable, structurally degenerate levels---so DPO sees many unambiguous
 negative examples, while the human votes carry the preference signal itself.
@@ -2259,21 +2252,11 @@ negative examples, while the human votes carry the preference signal itself.
 Third, the preference dataset preserves the primacy of human judgement. Synthetic
 pairs make the dataset large enough for DPO, but the 10$\times$ weight on human
 votes ensures that the model is ultimately anchored to PCG Arena preferences.
-This design is important because $J_{final}$ is only an approximation. It
+This design is important because $J_{final}$ is only an approximation: it
 reproduces the coarse quality tiering, but it cannot capture nostalgia,
 aesthetic surprise, or all forms of level readability.
 
-Several limitations remain. The human preference dataset is still small by deep
-learning standards, and the synthetic pairs inherit any bias in the judge
-function. The trajectory features are derived from short play sessions and A*
-simulation, which may not reflect how experienced human players explore levels
-over longer periods. The style reward also privileges Nintendo-like levels; this
-is appropriate for the benchmark used in this thesis, but it may penalise
-innovative generators whose quality lies outside the original SMB1 style
-manifold. Finally, some potentially useful signals, such as death entropy and
-fine-grained tag usage, are limited by data sparsity.
-
-Despite these limitations, MarioDPO closes the loop that the platform was
+Together, these components close the loop that the platform was
 built to enable. PCG Arena supplies human comparisons; the judge function turns
 them into a scalable learning signal; and DPO converts that signal into a
 generator whose levels reach human-authored quality. The exported levels are
@@ -2311,8 +2294,8 @@ no metric column separates strong from weak generators
 failure: frustrating, uncompletable structure shows up consistently in
 trajectories and tags (Section~\ref{sec:eda-tag-semantics}). A pragmatic judge
 built on these failure signals reproduces the coarse quality tiering in-sample
-($r_s = 0.736$) and suffices to synthesise training labels, but it detects
-easy-to-spot failures rather than measuring enjoyment.
+($r_s = 0.736$) and suffices to synthesise training labels by detecting
+easy-to-spot failures.
 
 
 \textbf{RQ3 (Generation).} The collected preferences suffice to train
@@ -2332,20 +2315,56 @@ quality.
 \section{Limitations}
 \label{sec:conc-limitations}
 
+The findings of this thesis should be interpreted in light of several
+methodological and technical limitations across the study protocol, the
+platform design, and the preference-learning pipeline:
+
 \begin{itemize}
-    \item \textbf{No evaluator quality model.} PCG Arena does not rate the
-          quality of individual players' evaluations. Metrics such as time
-          spent per level, decision latency, and tag usage frequency could
-          serve as proxies for evaluation quality, but no such model is
-          currently implemented.
-    \item \textbf{Recognisability of original levels.} Players who are
-          familiar with the original Nintendo levels may recognise them
-          despite the blind setup, introducing a potential nostalgia or
-          familiarity bias in favour of the human-authored baseline.
-    \item \textbf{Judge bias in synthetic pairs.} The 2,606
-          judge-labelled training pairs inherit any bias of $J_{final}$; the
-          $10\times$ upweighting of human votes mitigates but does not
-          eliminate this (Section~\ref{sec:dpo-discussion}).
+    \item \textbf{Volunteer population and unknown player background.}
+          Participation was voluntary and anonymous, tracked only via
+          browser-based identifiers that can reset when cookies are cleared or
+          devices change, and engagement was heavily concentrated in a small
+          group of active contributors. Because no demographic or background
+          survey was collected, we do not know participants' familiarity with
+          platformer games or \emph{Super Mario Bros}, nor their general
+          gameplay preferences, making it impossible to control for individual
+          differences in skill or taste. Moreover, the platform does not model
+          individual evaluator reliability (e.g., via play duration or decision
+          latency).
+    \item \textbf{Single-attempt protocol and immediate level transition.}
+          Each level was evaluated after a single playthrough, and the second
+          level in a battle started immediately after the first one ended,
+          without giving the player a pause. While this design maximised the
+          number of pairwise comparisons collected per unit of time, a player's
+          own performance on that single attempt (such as an early mistake) may
+          have influenced their rating, and the immediate transition between
+          levels left no recovery pause between evaluations.
+    \item \textbf{Unvalidated tag taxonomy and voting UI flow.}
+          The selectable level tags were chosen based on what seemed
+          appropriate for this study and do not constitute a validated
+          instrument for evaluating game levels. Furthermore, the interface did
+          not require players to select tags, and the tag selection option
+          disappeared immediately after a player clicked their preferred level.
+          While this flow encouraged rapid pairwise comparisons, it discouraged
+          thorough qualitative evaluation and contributed to tag sparsity.
+    \item \textbf{Presence of uncompletable levels.}
+          Because level ingestion performed only format-level validation without
+          automated reachability checks, the evaluation pool included levels
+          that were impossible to complete. Encountering uncompletable levels
+          may have frustrated human testers and negatively affected their
+          motivation.
+    \item \textbf{Recognisability of original levels.}
+          Players familiar with the original Nintendo levels may have
+          recognised them despite the blind setup, introducing a potential
+          nostalgia or familiarity bias in favour of the human-authored
+          baseline.
+    \item \textbf{Dataset scale and judge bias in MarioDPO training.}
+          The human preference dataset remains small by deep-learning standards,
+          and the 2,606 synthetic pairs inherit the biases of $J_{final}$. In
+          particular, judge features rely on short play sessions and A* agent
+          simulations that do not fully reflect longer human exploration, and
+          the style term privileges Nintendo-like structure, which may penalise
+          innovative generators outside the original SMB1 distribution.
 \end{itemize}
 
 \section{Future Directions}
@@ -2387,7 +2406,7 @@ the same way---a generator can maximise the objective and still produce levels
 players do not enjoy, which is precisely what \citet{marino2015empirical}
 observed and what the present data reproduces at larger scale. The difficulty
 was never a shortage of optimisation power; it was that the objective being
-optimised was a guess about human preference rather than a measurement of it.
+optimised was a guess about human preference, not a measurement of it.
 
 MarioDPO takes the opposite route. It never represents ``fun''
 explicitly. It collects pairwise judgements from players and lets Direct
